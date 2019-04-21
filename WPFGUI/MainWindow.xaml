@@ -5,8 +5,136 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFGUI"
         mc:Ignorable="d"
-        Title="绝对公平是不可能的抽奖系统" Height="450" Width="800">
+        Title="绝对公平是不可能的抽奖系统" Height="400" Width="600" MinWidth="600">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/bg.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Source="pack://siteoforigin:,,,/Resources/bgp.png" Grid.Column="1" Grid.RowSpan="2"/>
+
+        </Grid>
+        <TabControl Grid.Row="1">
+            <TabControl.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </TabControl.Background>
+            <TabItem Header="成绩查询">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.8" Color="#FFE5E5E5" ></SolidColorBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="消息文件路径：" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="30" FontSize="14"/>
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="FilePathLabel" Content="NULL" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="30" FontSize="14" Grid.ColumnSpan="2"/>
+                    <Label x:Name="Subject2Label" Content="用户类型" HorizontalAlignment="Center" Margin="0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="30" FontSize="14"/>
+                    <Label x:Name="Subject3Label" Content="开始日期" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Height="30" FontSize="14" Grid.Column="2"/>
+                    <TextBox x:Name="Key" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="14" Padding="0" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" MinWidth="150" VerticalScrollBarVisibility="Disabled" MaxWidth="200" MaxLength="18" Text="快来参与抽奖" HorizontalContentAlignment="Center"/>
+                    <Button x:Name="LuckyDrawButton" Content="开始抽奖" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" Height="30" FontSize="14" Grid.Column="4" Padding="5" Click="LuckyDrawButton_Click"/>
+                    <Label Content="抽奖口令" HorizontalAlignment="Center" Margin="0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <DatePicker x:Name="EndDate" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" FirstDayOfWeek="Sunday" Text="12312"/>
+                    <Button Content="打开文件" Grid.Column="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="31" FontSize="14" Padding="5" Click="Button_Click"/>
+                    <Button x:Name="Option" Content="高级选项" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" FontSize="14" Grid.Column="5" Padding="5"/>
+                    <DatePicker x:Name="StartDate" Grid.Column="3" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center"/>
+                    <Label x:Name="Subject3Label_Copy" Content="结束日期" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Height="30" FontSize="14" Grid.Column="4"/>
+                    <Grid Grid.Column="4"  Grid.Row="2" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox x:Name="StudentCheckBox" Content="学生" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="14" IsChecked="True"/>
+                        <CheckBox x:Name="AssistentCheckBox" Content="助教" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="14" Grid.Column="1"/>
+                        <CheckBox x:Name="TeacherCheckBox" Content="教师" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="14" Grid.Row="1"/>
+                    </Grid>
+                    <Label Content="一等奖" HorizontalAlignment="Center" Margin="0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <Label Content="二等奖" HorizontalAlignment="Center" Margin="0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <Label Content="三等奖" HorizontalAlignment="Center" Margin="0" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <TextBox x:Name="FirstPrizeNum" Grid.Column="1" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="48" MinWidth="30" MaxWidth="200" MaxLength="3" VerticalContentAlignment="Center" PreviewKeyDown="TextBox_KeyDown" InputMethod.IsInputMethodEnabled="False" Text="1" HorizontalContentAlignment="Center"/>
+                    <Label Content="人" HorizontalAlignment="Right" Margin="0" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <TextBox x:Name="SecondPrizeNum" Grid.Column="3" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="48" MinWidth="30" MaxWidth="200" MaxLength="3" VerticalContentAlignment="Center" InputMethod.IsInputMethodEnabled="False" PreviewKeyDown="TextBox_KeyDown" HorizontalContentAlignment="Center" Text="2"/>
+                    <TextBox x:Name="ThirdPrizeNum" Grid.Column="5" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="3" VerticalAlignment="Center" Width="48" MinWidth="30"  MaxWidth="200" MaxLength="3" VerticalContentAlignment="Center" InputMethod.IsInputMethodEnabled="False" PreviewKeyDown="TextBox_KeyDown" HorizontalContentAlignment="Center" Text="3"/>
+                    <Label Content="人" HorizontalAlignment="Right" Margin="0,8.714,0.429,9.857" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <Label Content="人" HorizontalAlignment="Right" Margin="0" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <Label Content="最低发言要求" HorizontalAlignment="Center" Margin="0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <Label Content="次" HorizontalAlignment="Right" Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
+                    <TextBox x:Name="FrequenceNum" Grid.Column="1" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="48" MinWidth="30" MaxWidth="200" MaxLength="2" VerticalContentAlignment="Center" PreviewKeyDown="TextBox_KeyDown" InputMethod.IsInputMethodEnabled="False" Text="1"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="抽奖结果">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.3" Color="#FFE5E5E5" ></SolidColorBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="Studentview" IsReadOnly="True" Opacity="0.8" >
+                        <!--<DataGrid.Columns>
+                        <DataGridTextColumn x:Name="StuId" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn x:Name="StuName" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn x:Name="ChineseGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn x:Name="MathGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn x:Name="EnglishGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                        <DataGridTextColumn x:Name="TeMess" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                    </DataGrid.Columns>-->
+
+                    </DataGrid>
+                    <Button x:Name="refresh_button" Content="输出结果" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="22" Opacity="0.8"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="关于">
+
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="0.8" Color="#FFFFEBEB" ></SolidColorBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="About" Content="绝对公平是不可能公平的抽奖系统 BETA" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="24"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center">
+                        <Hyperlink FontSize="20" NavigateUri=" http://www.cnblogs.com/HAWXCA/" Click="Hyperlink_Click">
+                            男上加男团队
+                        </Hyperlink>
+                    </TextBlock>
+
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
+
     </Grid>
 </Window>
