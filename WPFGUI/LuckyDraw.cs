@@ -70,11 +70,11 @@ namespace WPFGUI
             {
                 if (i == 0)
                 {
-                    personSpace[i] = GroupList[i].Stimes;
+                    personSpace[i] = GroupList[i].PersonalMessage.Count;
                 }
                 else
                 {
-                    personSpace[i] = GroupList[i].Stimes + personSpace[i - 1];
+                    personSpace[i] = GroupList[i].PersonalMessage.Count + personSpace[i - 1];
                 }
             }
         }
