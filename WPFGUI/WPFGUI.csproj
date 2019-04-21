@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Condition.cs" />
     <Compile Include="FileProcess.cs" />
+    <Compile Include="Filter.cs" />
     <Compile Include="LuckyDraw.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
