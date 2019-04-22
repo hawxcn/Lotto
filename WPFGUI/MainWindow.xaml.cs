@@ -99,7 +99,18 @@ namespace WPFGUI
 
             for (int i = 0; i < lastResult.winnerGroup.Count; i++)
             {
-                tempString.Append(i + 1 + ":" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                if (i < lastResult.WinnerCondition.firstPrizeNumber)
+                {
+                    tempString.Append("一等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
+                else if (i >= lastResult.WinnerCondition.firstPrizeNumber && i < lastResult.WinnerCondition.firstPrizeNumber + lastResult.WinnerCondition.secondPrizeNumber)
+                {
+                    tempString.Append("二等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
+                else
+                {
+                    tempString.Append("三等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
             }
             ResultBox.Text = tempString.ToString();
         }
