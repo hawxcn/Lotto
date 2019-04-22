@@ -11,36 +11,37 @@ namespace WPFGUI
     {
         public static int ll;
         public static int[] personSpace;
-        public WinnerGroup CreatLuckyDraw(List<GroupMember> GroupList , Condition condition)
+        public static WinnerGroup CreatLuckyDraw(List<GroupMember> groupList, Condition condition)
         {
-            WinnerGroup WinnerGroupList = new WinnerGroup();
-            WinnerGroupList.theme=condition.key;
-            createPearsonSpace(GroupList);
             int WinnerNum = condition.firstPrizeNumber + condition.secondPrizeNumber + condition.thirdPrizeNumber;
-            Boolean isPrise = false;
-            if (WinnerNum > GroupList.Count)
+            if (WinnerNum > groupList.Count)
             {
-               WinnerGroupList.winnerGroup=GroupList;
-                return WinnerGroupList;
+                return new WinnerGroup(condition.key, groupList);
             }
-            for(int i = 0; i < WinnerNum;)
+
+            List<GroupMember> WinnerGroupList = new List<GroupMember>();
+            createPearsonSpace(groupList);
+
+            Boolean isPrise = false;
+
+            for (int i = 0; i < WinnerNum;)
             {
-                int ran = RandomNum(GroupList.Count);
-                for(int j = 0; j < personSpace.Length; j++)
+                int ran = RandomNum(groupList.Count);
+                for (int j = 0; j < personSpace.Length; j++)
                 {
-                    if (ran <= personSpace[j] && WinnerGroupList.winnerGroup.Count == 0)
+                    if (ran <= personSpace[j] && WinnerGroupList.Count == 0)
                     {
                         GroupMember temp = new GroupMember();
-                        temp = GroupList[j];
-                        WinnerGroupList.winnerGroup.Add(temp);
+                        temp = groupList[j];
+                        WinnerGroupList.Add(temp);
                         i++;
                         break;
                     }
-                    else if (ran <= personSpace[j] && WinnerGroupList.winnerGroup.Count != 0)
+                    else if (ran <= personSpace[j] && WinnerGroupList.Count != 0)
                     {
-                        for(int k = 0; k < WinnerGroupList.winnerGroup.Count; k++)
+                        for (int k = 0; k < WinnerGroupList.Count; k++)
                         {
-                            if (GroupList[j].name.Equals(WinnerGroupList.winnerGroup[k].name))
+                            if (groupList[j].name.Equals(WinnerGroupList[k].name))
                             {
                                 isPrise = true;
                             }
@@ -48,8 +49,8 @@ namespace WPFGUI
                         if (!isPrise)
                         {
                             GroupMember temp = new GroupMember();
-                            temp = GroupList[j];
-                            WinnerGroupList.winnerGroup.Add(temp);
+                            temp = groupList[j];
+                            WinnerGroupList.Add(temp);
                             i++;
                             break;
                         }
@@ -61,10 +62,10 @@ namespace WPFGUI
                     }
                 }
             }
-            return WinnerGroupList;
+            return new WinnerGroup(condition.key, WinnerGroupList);
         }
 
-        public static void createPearsonSpace(List<GroupMember> GroupList)
+        private static void createPearsonSpace(List<GroupMember> GroupList)
         {
             personSpace = new int[GroupList.Count];
             personSpace[0] = 0;
@@ -81,7 +82,7 @@ namespace WPFGUI
             }
         }
 
-        public static int RandomNum(int n)
+        private static int RandomNum(int n)
         {
             int max = 10;
             RNGCryptoServiceProvider csp = new RNGCryptoServiceProvider();
