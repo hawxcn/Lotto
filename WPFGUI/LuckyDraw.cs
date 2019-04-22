@@ -11,34 +11,36 @@ namespace WPFGUI
     {
         public static int ll;
         public static int[] personSpace;
-        public List<GroupMember> CreatLuckyDraw(List<GroupMember> GroupList , Condition condition)
+        public WinnerGroup CreatLuckyDraw(List<GroupMember> GroupList , Condition condition)
         {
-            List<GroupMember> WinnerGroupList = new List<GroupMember>();
+            WinnerGroup WinnerGroupList = new WinnerGroup();
+            WinnerGroupList.theme=condition.key;
             createPearsonSpace(GroupList);
             int WinnerNum = condition.firstPrizeNumber + condition.secondPrizeNumber + condition.thirdPrizeNumber;
             Boolean isPrise = false;
             if (WinnerNum > GroupList.Count)
             {
-                return GroupList;
+               WinnerGroupList.winnerGroup=GroupList;
+                return WinnerGroupList;
             }
             for(int i = 0; i < WinnerNum;)
             {
                 int ran = RandomNum(GroupList.Count);
                 for(int j = 0; j < personSpace.Length; j++)
                 {
-                    if (ran <= personSpace[j] && WinnerGroupList.Count == 0)
+                    if (ran <= personSpace[j] && WinnerGroupList.winnerGroup.Count == 0)
                     {
                         GroupMember temp = new GroupMember();
                         temp = GroupList[j];
-                        WinnerGroupList.Add(temp);
+                        WinnerGroupList.winnerGroup.Add(temp);
                         i++;
                         break;
                     }
-                    else if (ran <= personSpace[j] && WinnerGroupList.Count != 0)
+                    else if (ran <= personSpace[j] && WinnerGroupList.winnerGroup.Count != 0)
                     {
-                        for(int k = 0; k < WinnerGroupList.Count; k++)
+                        for(int k = 0; k < WinnerGroupList.winnerGroup.Count; k++)
                         {
-                            if (GroupList[j].name.Equals(WinnerGroupList[k].name))
+                            if (GroupList[j].name.Equals(WinnerGroupList.winnerGroup[k].name))
                             {
                                 isPrise = true;
                             }
@@ -47,7 +49,7 @@ namespace WPFGUI
                         {
                             GroupMember temp = new GroupMember();
                             temp = GroupList[j];
-                            WinnerGroupList.Add(temp);
+                            WinnerGroupList.winnerGroup.Add(temp);
                             i++;
                             break;
                         }
