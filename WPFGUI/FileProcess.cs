@@ -119,7 +119,18 @@ namespace WPFGUI
                 sw.WriteLine(wg.theme);
                 for (int i = 0; i < wg.winnerGroup.Count; i++)
                 {
-                    sw.WriteLine(i + 1 + ":" + wg.winnerGroup[i].name + "(" + wg.winnerGroup[i].ID + ")");
+                    if (i < wg.WinnerCondition.firstPrizeNumber)
+                    {
+                        sw.WriteLine("一等奖：" + wg.winnerGroup[i].name + "(" + wg.winnerGroup[i].ID + ")");
+                    }
+                    else if (i >= wg.WinnerCondition.firstPrizeNumber && i < wg.WinnerCondition.firstPrizeNumber + wg.WinnerCondition.secondPrizeNumber)
+                    {
+                        sw.WriteLine("二等奖：" + wg.winnerGroup[i].name + "(" + wg.winnerGroup[i].ID + ")");
+                    }
+                    else
+                    {
+                        sw.WriteLine("三等奖：" + wg.winnerGroup[i].name + "(" + wg.winnerGroup[i].ID + ")");
+                    }
                 }
                 sw.Flush();
                 sw.Close();
@@ -140,7 +151,7 @@ namespace WPFGUI
         public string theme;
         public List<GroupMember> winnerGroup;
         public Condition WinnerCondition;
-        public WinnerGroup(string themeKey, List<GroupMember> winners,Condition condition)
+        public WinnerGroup(string themeKey, List<GroupMember> winners, Condition condition)
         {
             theme = themeKey;
             winnerGroup = winners;

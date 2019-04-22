@@ -83,11 +83,11 @@ namespace WPFGUI
             condition.firstPrizeNumber = FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
             condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
             condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
-            StringBuilder keyText=new StringBuilder("#");
+            StringBuilder keyText = new StringBuilder("#");
             keyText.Append(Key.Text.ToString());
             keyText.Append("#");
             condition.key = keyText.ToString();
-             
+
             //Console.WriteLine("FrequenceNum "+ frequence);
             //Console.WriteLine("startDate " + startDate);
             //Console.WriteLine("endDate " + endDate);
@@ -104,7 +104,18 @@ namespace WPFGUI
 
             for (int i = 0; i < lastResult.winnerGroup.Count; i++)
             {
-                tempString.Append(i + 1 + ":" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                if (i < lastResult.WinnerCondition.firstPrizeNumber)
+                {
+                    tempString.Append("一等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
+                else if (i >= lastResult.WinnerCondition.firstPrizeNumber && i < lastResult.WinnerCondition.firstPrizeNumber + lastResult.WinnerCondition.secondPrizeNumber)
+                {
+                    tempString.Append("二等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
+                else
+                {
+                    tempString.Append("三等奖：" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+                }
             }
             ResultBox.Text = tempString.ToString();
         }
