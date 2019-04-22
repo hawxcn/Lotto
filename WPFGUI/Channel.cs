@@ -37,11 +37,7 @@ namespace WPFGUI
             else return false;
 
         }
-        //筛选
-        public void getSubGroupMember()
-        {
-            
-        }
+        
         //初始化
         public void InitializeGroupMember()
         {
