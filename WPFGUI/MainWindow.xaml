@@ -31,7 +31,7 @@
             <TabControl.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
             </TabControl.Background>
-            <TabItem Header="成绩查询">
+            <TabItem Header="抽奖选项">
                 <Grid>
                     <Grid.Background>
                         <SolidColorBrush Opacity="0.8" Color="#FFE5E5E5" ></SolidColorBrush>
@@ -59,7 +59,7 @@
                     <Label Content="抽奖口令" HorizontalAlignment="Center" Margin="0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
                     <DatePicker x:Name="EndDate" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" FirstDayOfWeek="Sunday" Text="12312"/>
                     <Button Content="打开文件" Grid.Column="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="31" FontSize="14" Padding="5" Click="Button_Click"/>
-                    <Button x:Name="Option" Content="高级选项" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" FontSize="14" Grid.Column="5" Padding="5"/>
+                    <Button x:Name="Option" Content="高级选项" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" FontSize="14" Grid.Column="5" Padding="5" IsEnabled="False"/>
                     <DatePicker x:Name="StartDate" Grid.Column="3" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center"/>
                     <Label x:Name="Subject3Label_Copy" Content="结束日期" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Height="30" FontSize="14" Grid.Column="4"/>
                     <Grid Grid.Column="4"  Grid.Row="2" Grid.ColumnSpan="2">
@@ -99,17 +99,18 @@
                         <RowDefinition/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="Studentview" IsReadOnly="True" Opacity="0.8" >
-                        <!--<DataGrid.Columns>
+                    <!--<DataGrid x:Name="Studentview" IsReadOnly="True" Opacity="0.8" >
+                        --><!--<DataGrid.Columns>
                         <DataGridTextColumn x:Name="StuId" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn x:Name="StuName" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn x:Name="ChineseGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn x:Name="MathGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn x:Name="EnglishGrades" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                         <DataGridTextColumn x:Name="TeMess" Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
-                    </DataGrid.Columns>-->
+                    </DataGrid.Columns>--><!--
 
-                    </DataGrid>
+                    </DataGrid>-->
+                    <TextBlock x:Name="ResultBox" Grid.Row="0" Background="#7FFFFFFF" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
                     <Button x:Name="write_button" Content="输出结果" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="22" Opacity="0.8" Click="Write_button_Click"/>
                 </Grid>
             </TabItem>

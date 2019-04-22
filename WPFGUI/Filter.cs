@@ -43,11 +43,11 @@ namespace WPFGUI
             foreach (GroupMember gm in s)
             {
                 //不符合条件的加入删除列表
-                if (!(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage)))
+                if (!(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage)))// !(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage))
                 {
                     deletegm.Add(gm);
-                }   
-                
+                }
+
             }
             foreach (GroupMember gmsa in deletegm)
             {
@@ -55,7 +55,7 @@ namespace WPFGUI
             }
             return s;
         }
-        private bool isLuck(GroupMember g,int k)
+        private bool isLuck(GroupMember g, int k)
         {
             int n = 0;
             if (g.type.Equals("student"))
@@ -77,7 +77,7 @@ namespace WPFGUI
 
         private bool isSpeak(List<Message> list)
         {
-            foreach(Message ms in list)
+            foreach (Message ms in list)
             {
                 if (DateTime.Compare(ms.sendTime, condition.starTime) >= 0 && DateTime.Compare(ms.sendTime, condition.endTime) <= 0 && ms.theme.Contains(condition.key))
                 {
