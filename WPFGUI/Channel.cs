@@ -60,6 +60,10 @@ namespace WPFGUI
                         {
                             i.type = message.type;
                         }
+                        if (!message.name.Equals(i.name))
+                        {
+                            i.name = message.name;
+                        }
                         isExit = 1;
                         keyByGroupMember[i].Add(message);//添加入字典
                         i.PersonalMessage.Add(message);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFGUI"
         mc:Ignorable="d"
-        Title="绝对公平是不可能的抽奖系统" Height="400" Width="600" MinWidth="600">
+        Title="绝对公平是不可能的抽奖系统" Height="400" Width="600" MinWidth="600" MinHeight="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -54,7 +54,7 @@
                     <Label Grid.Row="0" Grid.Column="1" x:Name="FilePathLabel" Content="NULL" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Height="30" FontSize="14" Grid.ColumnSpan="2"/>
                     <Label x:Name="Subject2Label" Content="用户类型" HorizontalAlignment="Center" Margin="0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="30" FontSize="14"/>
                     <Label x:Name="Subject3Label" Content="开始日期" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Height="30" FontSize="14" Grid.Column="2"/>
-                    <TextBox x:Name="Key" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="14" Padding="0" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" MinWidth="150" VerticalScrollBarVisibility="Disabled" MaxWidth="200" MaxLength="18" Text="快来参与抽奖" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="Key" HorizontalAlignment="Center" Height="30" Margin="0" Grid.Row="2" VerticalAlignment="Center" FontSize="14" Padding="0" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" MinWidth="150" VerticalScrollBarVisibility="Disabled" MaxWidth="200" MaxLength="18" Text="#我爱软工实践#" HorizontalContentAlignment="Center"/>
                     <Button x:Name="LuckyDrawButton" Content="开始抽奖" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="76" Height="30" FontSize="14" Grid.Column="4" Padding="5" Click="LuckyDrawButton_Click"/>
                     <Label Content="抽奖口令" HorizontalAlignment="Center" Margin="0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="2,0.48" Height="30" FontSize="14"/>
                     <DatePicker x:Name="EndDate" Grid.Column="5" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" FirstDayOfWeek="Sunday" Text="12312"/>
@@ -97,7 +97,7 @@
                     </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <!--<DataGrid x:Name="Studentview" IsReadOnly="True" Opacity="0.8" >
                         --><!--<DataGrid.Columns>
@@ -113,7 +113,7 @@
                     <ScrollViewer >
                         <TextBlock x:Name="ResultBox" Grid.Row="0" Background="#7FFFFFFF" ScrollViewer.CanContentScroll="True"/>
                     </ScrollViewer>
-                    <Button x:Name="write_button" Content="输出结果到文件" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="22" Opacity="0.8" Click="Write_button_Click"/>
+                    <Button x:Name="write_button" Content="输出结果到文件" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Opacity="0.8" Click="Write_button_Click" Padding="5"/>
                 </Grid>
             </TabItem>
             <TabItem Header="关于">
