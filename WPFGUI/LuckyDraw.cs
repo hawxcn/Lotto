@@ -16,7 +16,7 @@ namespace WPFGUI
             int WinnerNum = condition.firstPrizeNumber + condition.secondPrizeNumber + condition.thirdPrizeNumber;
             if (WinnerNum > groupList.Count)
             {
-                return new WinnerGroup(condition.key, groupList);
+                return new WinnerGroup(condition.key, groupList,condition);
             }
 
             List<GroupMember> WinnerGroupList = new List<GroupMember>();
@@ -62,7 +62,7 @@ namespace WPFGUI
                     }
                 }
             }
-            return new WinnerGroup(condition.key, WinnerGroupList);
+            return new WinnerGroup(condition.key, WinnerGroupList, condition);
         }
 
         private static void createPearsonSpace(List<GroupMember> GroupList)
