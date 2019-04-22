@@ -84,7 +84,7 @@ namespace WPFGUI
 
         private static int RandomNum(int n)
         {
-            int max = 10;
+            int max = 1<<10;
             RNGCryptoServiceProvider csp = new RNGCryptoServiceProvider();
             byte[] byteCsp = new byte[10];
             csp.GetBytes(byteCsp);

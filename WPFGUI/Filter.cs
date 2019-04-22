@@ -43,11 +43,11 @@ namespace WPFGUI
             foreach (GroupMember gm in s)
             {
                 //不符合条件的加入删除列表
-                if (!(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage)))
+                if (!(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage)))// !(isLuck(gm, condition.type) && gm.PersonalMessage.Count >= condition.frequency && isSpeak(gm.PersonalMessage))
                 {
                     deletegm.Add(gm);
-                }   
-                
+                }
+
             }
             foreach (GroupMember gmsa in deletegm)
             {

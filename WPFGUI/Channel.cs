@@ -37,11 +37,7 @@ namespace WPFGUI
             else return false;
 
         }
-        //筛选
-        public void getSubGroupMember()
-        {
-            
-        }
+        
         //初始化
         public void InitializeGroupMember()
         {
@@ -60,6 +56,10 @@ namespace WPFGUI
                     //判断新来的Message的ID是否已存在
                     if (message.ID.Equals(i.ID))//存在
                     {
+                        if (!message.type.Equals(i.type))
+                        {
+                            i.type = message.type;
+                        }
                         isExit = 1;
                         keyByGroupMember[i].Add(message);//添加入字典
                         i.PersonalMessage.Add(message);
@@ -82,10 +82,9 @@ namespace WPFGUI
         }
         public WinnerGroup GetLuckyGuys(Condition c)
         {
-            Filter filter = new Filter(c);           ;
-            return LuckyDraw.CreatLuckyDraw(filter.MemberFilter(groupMember),c) ;
+            Filter filter = new Filter(c);
+            return LuckyDraw.CreatLuckyDraw(filter.MemberFilter(groupMember), c);
         }
-
 
     }
     

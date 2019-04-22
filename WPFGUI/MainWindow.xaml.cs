@@ -74,10 +74,12 @@ namespace WPFGUI
                 MessageBox.Show("请选择抽奖人员类型！");
                 return;//放弃
             }
+
             Condition condition=new Condition();
+            condition.type = getSelectedType();
             condition.frequency = FrequenceNum.Text.Equals("") ? 1 : Int32.Parse(FrequenceNum.Text);
             condition.starTime= StartDate.SelectedDate ?? DateTime.Now;
-            condition.endTime= StartDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
+            condition.endTime= EndDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
             condition.firstPrizeNumber= FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
             condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
             condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
@@ -94,6 +96,14 @@ namespace WPFGUI
             a.InitializeGroupMember();//构造成员
             lastResult = a.GetLuckyGuys(condition);
 
+            MessageBox.Show("抽奖程序执行完毕,请跳转结果页进行查看.");
+            StringBuilder tempString=new StringBuilder(lastResult.theme+"\n");
+            
+            for (int i = 0; i < lastResult.winnerGroup.Count; i++)
+            {
+                tempString.Append(i + 1 + ":" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
+            }
+            ResultBox.Text = tempString.ToString();
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
