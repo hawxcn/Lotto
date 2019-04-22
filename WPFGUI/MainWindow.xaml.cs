@@ -34,7 +34,7 @@ namespace WPFGUI
         {
             Hyperlink link = sender as Hyperlink;
             //Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
-            System.Diagnostics.Process.Start(link.NavigateUri.AbsoluteUri);  
+            System.Diagnostics.Process.Start(link.NavigateUri.AbsoluteUri);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -75,12 +75,12 @@ namespace WPFGUI
                 return;//放弃
             }
 
-            Condition condition=new Condition();
+            Condition condition = new Condition();
             condition.type = getSelectedType();
             condition.frequency = FrequenceNum.Text.Equals("") ? 1 : Int32.Parse(FrequenceNum.Text);
-            condition.starTime= StartDate.SelectedDate ?? DateTime.Now;
-            condition.endTime= EndDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
-            condition.firstPrizeNumber= FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
+            condition.starTime = StartDate.SelectedDate ?? DateTime.Now;
+            condition.endTime = EndDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
+            condition.firstPrizeNumber = FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
             condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
             condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
             condition.key = Key.Text.ToString();
@@ -92,13 +92,13 @@ namespace WPFGUI
             //Console.WriteLine("secondPrizeNum " + secondPrizeNum);
             //Console.WriteLine("thirdPrizeNum " + thirdPrizeNum);
 
-            Channel a=new Channel(FileProcess.readFile(FilePathLabel.Content.ToString()));//构造群
+            Channel a = new Channel(FileProcess.readFile(FilePathLabel.Content.ToString()));//构造群
             a.InitializeGroupMember();//构造成员
             lastResult = a.GetLuckyGuys(condition);
 
             MessageBox.Show("抽奖程序执行完毕,请跳转结果页进行查看.");
-            StringBuilder tempString=new StringBuilder(lastResult.theme+"\n");
-            
+            StringBuilder tempString = new StringBuilder(lastResult.theme + "\n");
+
             for (int i = 0; i < lastResult.winnerGroup.Count; i++)
             {
                 tempString.Append(i + 1 + ":" + lastResult.winnerGroup[i].name + "(" + lastResult.winnerGroup[i].ID + ")\n");
@@ -108,7 +108,7 @@ namespace WPFGUI
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != System.Windows.Input.Key.Back && (e.Key< System.Windows.Input.Key.D0|| e.Key > System.Windows.Input.Key.D9))
+            if (e.Key != System.Windows.Input.Key.Back && (e.Key < System.Windows.Input.Key.D0 || e.Key > System.Windows.Input.Key.D9))
             {
                 e.Handled = true;
             }
@@ -117,11 +117,11 @@ namespace WPFGUI
         private void Write_button_Click(object sender, RoutedEventArgs e)
         {
             string filePath = FilePathLabel.Content.ToString();
-            string outputPath = filePath.Substring(0, filePath.LastIndexOf("\\"))+"\\result.txt";
+            string outputPath = filePath.Substring(0, filePath.LastIndexOf("\\")) + "\\result.txt";
             Console.WriteLine(outputPath);
             //FileProcess.writeFile(, lastResult);
-            FileProcess.writeFile(outputPath,lastResult);
-            MessageBox.Show("已输出至"+ outputPath);
+            FileProcess.writeFile(outputPath, lastResult);
+            MessageBox.Show("已输出至" + outputPath);
         }
     }
 }
