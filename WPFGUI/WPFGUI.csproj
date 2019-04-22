@@ -65,9 +65,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Channel.cs" />
     <Compile Include="Condition.cs" />
     <Compile Include="FileProcess.cs" />
     <Compile Include="Filter.cs" />
+    <Compile Include="GroupMember.cs" />
     <Compile Include="LuckyDraw.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
