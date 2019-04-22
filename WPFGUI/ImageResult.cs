@@ -54,8 +54,19 @@ namespace WPFGUI
                     float currentY = 0;
                     for (int i=0; startY+currentY < image.Width && i < winnerGroup.winnerGroup.Count; currentY += sizef.Height + 10,i++)
                     {
-                        string tempLine = $"";//输出的字符串
-                        //if(i<winnerGroup.)
+                        string tempLine;
+                        if (i < winnerGroup.WinnerCondition.firstPrizeNumber)
+                        {
+                            tempLine = $"一等奖：{winnerGroup.winnerGroup[i].name}({winnerGroup.winnerGroup[i].ID})";//输出的字符串
+                        }
+                        else if (i >= winnerGroup.WinnerCondition.firstPrizeNumber && i < winnerGroup.WinnerCondition.firstPrizeNumber + winnerGroup.WinnerCondition.secondPrizeNumber)
+                        {
+                            tempLine = $"二等奖：{winnerGroup.winnerGroup[i].name}({winnerGroup.winnerGroup[i].ID})";//输出的字符串
+                        }
+                        else
+                        {
+                            tempLine = $"三等奖：{winnerGroup.winnerGroup[i].name}({winnerGroup.winnerGroup[i].ID})";//输出的字符串
+                        }
                         sizef = g.MeasureString(tempLine, crFont);//得到文本的宽高
                         g.DrawString(tempLine, crFont, semiTransBrush, new PointF((image.Width - sizef.Width) / 2, currentY));
                     }
