@@ -7,32 +7,32 @@ namespace WPFGUI
 {
     public class FileProcess
     {
-        static List<Message> readFile(String inputFileName)
+        public static List<Message> readFile(string inputFileName)
         {
             List<Message> msgs = new List<Message>();
             try
             {
                 StreamReader sr = File.OpenText(inputFileName);
-                String nextLine;
+                string nextLine;
                 nextLine = sr.ReadLine();
                 while (true)
                 {
                     if (nextLine == null) break;
-                    String date = nextLine.Substring(0, nextLine.IndexOf(" "));
+                    string date = nextLine.Substring(0, nextLine.IndexOf(" "));
                     nextLine = nextLine.Substring(11, nextLine.Length - 11);
                     int space2 = nextLine.IndexOf(" ");
-                    String time = nextLine.Substring(0, space2);
-                    String[] date_time = { date, time };
-                    String datetime_temp = String.Join(" ", date_time);
+                    string time = nextLine.Substring(0, space2);
+                    string[] date_time = { date, time };
+                    string datetime_temp = String.Join(" ", date_time);
                     DateTime datetime = Convert.ToDateTime(datetime_temp);//提取日期、时间
-                    String memberid_temp = nextLine.Substring(space2, nextLine.Length - space2);//提取群昵称和ID
+                    string memberid_temp = nextLine.Substring(space2, nextLine.Length - space2);//提取群昵称和ID
                     int flag = memberid_temp.LastIndexOf("(");
                     if (memberid_temp.Contains("<"))
                     {
                         flag = memberid_temp.LastIndexOf("<");
                     }
-                    String name = memberid_temp.Substring(1, flag - 1);
-                    String member_type = "student";
+                    string name = memberid_temp.Substring(1, flag - 1);
+                    string member_type = "student";
                     if (name.Contains("助教"))
                     {
                         member_type = "assistant";
@@ -45,16 +45,16 @@ namespace WPFGUI
                     {
                         member_type = "system";
                     }
-                    String id = memberid_temp.Substring(flag + 1, memberid_temp.Length - flag - 2);
+                    string id = memberid_temp.Substring(flag + 1, memberid_temp.Length - flag - 2);
                     //Console.WriteLine(datetime);
                     //Console.WriteLine(name);
                     //Console.WriteLine(member_type);
                     //Console.WriteLine(id);
                     //提取消息
-                    String message = sr.ReadLine();
+                    string message = sr.ReadLine();
                     while (true)
                     {
-                        String newline = sr.ReadLine();
+                        string newline = sr.ReadLine();
                         if (newline == null)
                         {
                             nextLine = null;
@@ -62,7 +62,7 @@ namespace WPFGUI
                         }
                         else
                         {
-                            String pat = "\\d{4}-\\d{2}-\\d{2}.*";
+                            string pat = "\\d{4}-\\d{2}-\\d{2}.*";
                             Regex regex = new Regex(pat);
                             if (regex.IsMatch(newline))//读到新的一个人的发言
                             {
@@ -75,10 +75,10 @@ namespace WPFGUI
                             }
                         }
                     }
-                    String tag_pat = "#[^#]+#";
+                    string tag_pat = "#[^#]+#";
                     Regex tag_regex = new Regex(tag_pat);
                     MatchCollection tag_matchs = tag_regex.Matches(message);
-                    List<String> theme = new List<String>();
+                    List<string> theme = new List<string>();
                     foreach (Match tag in tag_matchs)
                     {
                         //Console.WriteLine(tag);
@@ -110,7 +110,7 @@ namespace WPFGUI
             */
             return msgs;
         }
-        static Boolean writeFile(String outputFileName, WinnerGroup wg)
+        public static Boolean writeFile(string outputFileName, WinnerGroup wg)
         {
             try
             {
@@ -134,29 +134,27 @@ namespace WPFGUI
     }
 
     /*WinnerGroup   temp*/
-    class WinnerGroup
+    public class WinnerGroup
     {
-        public String theme;
+        public string theme;
         public List<GroupMember> winnerGroup;
-    }
-    /*GroupMember   temp*/
-    class GroupMember
-    {
-        public String type;
-        public String name;
-        public String ID;
-        public List<Message> PersonalMessage;
+
+        WinnerGroup(string themeKey, List<GroupMember> winners)
+        {
+            theme = themeKey;
+            winnerGroup = winners;
+        }
     }
 
-    class Message
+    public class Message
     {
         public DateTime sendTime;
-        public String type;
-        public String name;
-        public String ID;
-        public String message;
-        public List<String> theme;
-        public Message(DateTime stime, String type, String name, String id, String msg, List<String> theme)
+        public string type;
+        public string name;
+        public string ID;
+        public string message;
+        public List<string> theme;
+        public Message(DateTime stime, string type, string name, string id, string msg, List<string> theme)
         {
             this.sendTime = stime;
             this.type = type;

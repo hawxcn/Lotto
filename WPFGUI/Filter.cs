@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
-namespace LuckFilter
+namespace WPFGUI
 {
     public class Filter
     {
@@ -15,24 +15,24 @@ namespace LuckFilter
             this.condition = condition;
         }
 
-
-        public List<Message> MessageFilter(List<Message> mh)
-        {
-            List<Message> ms = mh;    //这里是要筛选的信息History
-            List<Message> deletemsa = new List<Message>();
-            foreach(Message msa in ms)
-            {
-                if (!(DateTime.Compare(msa.sendTime, condition.starTime) > 0 && DateTime.Compare(msa.sendTime,condition.endTime) < 0 && msa.speaker.PersonalMessage.Count >= condition.frequency))
-                {
-                    deletemsa.Add(msa);
-                }
-            }
-            foreach(Message msas in deletemsa)
-            {
-                ms.Remove(msas);
-            }
-            return ms;
-        }
+        //暂时无用
+        //public List<Message> MessageFilter(List<Message> mh)
+        //{
+        //    List<Message> ms = mh;    //这里是要筛选的信息History
+        //    List<Message> deletemsa = new List<Message>();
+        //    foreach(Message msa in ms)
+        //    {
+        //        if (!(DateTime.Compare(msa.sendTime, condition.starTime) > 0 && DateTime.Compare(msa.sendTime,condition.endTime) < 0 && msa.speaker.PersonalMessage.Count >= condition.frequency))
+        //        {
+        //            deletemsa.Add(msa);
+        //        }
+        //    }
+        //    foreach(Message msas in deletemsa)
+        //    {
+        //        ms.Remove(msas);
+        //    }
+        //    return ms;
+        //}
 
 
         //GroupMember筛选

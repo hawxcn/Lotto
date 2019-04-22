@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Classify
+namespace WPFGUI
 {
-    class GroupMember
+    public class GroupMember
     {
         public string type;
         public string name;
         public string ID;
         public List<Message> PersonalMessage = new List<Message>();
+        //public List<Message> PersonalMessage;
     }
 }
