@@ -113,7 +113,15 @@
                     <ScrollViewer >
                         <TextBlock x:Name="ResultBox" Grid.Row="0" Background="#7FFFFFFF" ScrollViewer.CanContentScroll="True"/>
                     </ScrollViewer>
-                    <Button x:Name="write_button" Content="输出结果到文件" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Opacity="0.8" Click="Write_button_Click" Padding="5"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="WriteButton" Content="输出结果到文件" HorizontalAlignment="Center" Margin="0" Grid.Column="0" VerticalAlignment="Center" Opacity="0.8" Click="Write_button_Click" Padding="5"/>
+                        <Button x:Name="WriteImageButton" Content="生成海报" HorizontalAlignment="Center" Margin="0" Grid.Column="1" VerticalAlignment="Center" Opacity="0.8" Padding="5" Click="WriteImageButton_Click"/>
+                    </Grid>
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="关于">

@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Media;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using KeyEventArgs = System.Windows.Input.KeyEventArgs;
-using MessageBox = System.Windows.MessageBox;
+using Microsoft.Win32;
+using Image = System.Windows.Controls.Image;
 
 namespace WPFGUI
 {
@@ -34,12 +29,12 @@ namespace WPFGUI
         {
             Hyperlink link = sender as Hyperlink;
             //Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
-            System.Diagnostics.Process.Start(link.NavigateUri.AbsoluteUri);
+            Process.Start(link.NavigateUri.AbsoluteUri);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog()
+            var openFileDialog = new OpenFileDialog
             {
                 Filter = "Text Files (*.txt)|*.txt"
             };
@@ -84,7 +79,7 @@ namespace WPFGUI
             condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
             condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
             StringBuilder keyText=new StringBuilder("#");
-            keyText.Append(Key.Text.ToString());
+            keyText.Append(Key.Text);
             keyText.Append("#");
             condition.key = keyText.ToString();
              
@@ -126,5 +121,17 @@ namespace WPFGUI
             FileProcess.writeFile(outputPath, lastResult);
             MessageBox.Show("已输出至" + outputPath);
         }
+
+        private void WriteImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            string filePath = FilePathLabel.Content.ToString();
+            string outputPath = filePath.Substring(0, filePath.LastIndexOf("\\")) + "\\result.jpeg";
+
+
+            ImageResult.OutputResultAsImage(lastResult,outputPath);
+            //ImageResult.WriteBitmap(outputPath);
+            MessageBox.Show("已输出至" + outputPath);
+        }
     }
 }
+

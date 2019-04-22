@@ -91,6 +91,7 @@
     <Compile Include="FileProcess.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="GroupMember.cs" />
+    <Compile Include="ImageResult.cs" />
     <Compile Include="LuckyDraw.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -141,6 +142,9 @@
   <ItemGroup>
     <Resource Include="Resources\bg.jpg" />
     <Resource Include="Resources\bgp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\winner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
