@@ -83,8 +83,11 @@ namespace WPFGUI
             condition.firstPrizeNumber = FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
             condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
             condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
-            condition.key = Key.Text.ToString();
-
+            StringBuilder keyText=new StringBuilder("#");
+            keyText.Append(Key.Text.ToString());
+            keyText.Append("#");
+            condition.key = keyText.ToString();
+             
             //Console.WriteLine("FrequenceNum "+ frequence);
             //Console.WriteLine("startDate " + startDate);
             //Console.WriteLine("endDate " + endDate);
