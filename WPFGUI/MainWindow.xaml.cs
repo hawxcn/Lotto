@@ -21,8 +21,10 @@ namespace WPFGUI
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
+    ///
     public partial class MainWindow : Window
     {
+        private WinnerGroup lastResult;
         public MainWindow()
         {
             InitializeComponent();
@@ -72,14 +74,14 @@ namespace WPFGUI
                 MessageBox.Show("请选择抽奖人员类型！");
                 return;//放弃
             }
-
-            var frequence = FrequenceNum.Text ?? "1";
-            var startDate = StartDate.SelectedDate ?? DateTime.Now;
-            var endDate = StartDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
-            var firstPrizeNum = FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
-            var secondPrizeNum = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
-            var thirdPrizeNum = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
-            string activity = Key.Text;
+            Condition condition=new Condition();
+            condition.frequency = FrequenceNum.Text.Equals("") ? 1 : Int32.Parse(FrequenceNum.Text);
+            condition.starTime= StartDate.SelectedDate ?? DateTime.Now;
+            condition.endTime= StartDate.SelectedDate ?? DateTime.Now.AddDays(7);//默认七天
+            condition.firstPrizeNumber= FirstPrizeNum.Text.Equals("") ? 1 : Int32.Parse(FirstPrizeNum.Text);
+            condition.secondPrizeNumber = SecondPrizeNum.Text.Equals("") ? 2 : Int32.Parse(SecondPrizeNum.Text);
+            condition.thirdPrizeNumber = ThirdPrizeNum.Text.Equals("") ? 3 : Int32.Parse(ThirdPrizeNum.Text);
+            condition.key = Key.Text.ToString();
 
             //Console.WriteLine("FrequenceNum "+ frequence);
             //Console.WriteLine("startDate " + startDate);
@@ -88,7 +90,9 @@ namespace WPFGUI
             //Console.WriteLine("secondPrizeNum " + secondPrizeNum);
             //Console.WriteLine("thirdPrizeNum " + thirdPrizeNum);
 
-
+            Channel a=new Channel(FileProcess.readFile(FilePathLabel.Content.ToString()));//构造群
+            a.InitializeGroupMember();//构造成员
+            lastResult = a.GetLuckyGuys(condition);
 
         }
 
@@ -99,6 +103,15 @@ namespace WPFGUI
                 e.Handled = true;
             }
         }
-        
+
+        private void Write_button_Click(object sender, RoutedEventArgs e)
+        {
+            string filePath = FilePathLabel.Content.ToString();
+            string outputPath = filePath.Substring(0, filePath.LastIndexOf("\\"))+"\\result.txt";
+            Console.WriteLine(outputPath);
+            //FileProcess.writeFile(, lastResult);
+            FileProcess.writeFile(outputPath,lastResult);
+            MessageBox.Show("已输出至"+ outputPath);
+        }
     }
 }

@@ -80,6 +80,11 @@ namespace WPFGUI
                 }
             }
         }
+        public WinnerGroup GetLuckyGuys(Condition c)
+        {
+            Filter filter = new Filter(c);           ;
+            return LuckyDraw.CreatLuckyDraw(filter.MemberFilter(groupMember),c) ;
+        }
 
 
     }

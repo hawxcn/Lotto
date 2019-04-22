@@ -55,7 +55,7 @@ namespace WPFGUI
             }
             return s;
         }
-        public bool isLuck(GroupMember g,int k)
+        private bool isLuck(GroupMember g,int k)
         {
             int n = 0;
             if (g.type.Equals("student"))
@@ -75,7 +75,7 @@ namespace WPFGUI
             return false;
         }
 
-        public bool isSpeak(List<Message> list)
+        private bool isSpeak(List<Message> list)
         {
             foreach(Message ms in list)
             {

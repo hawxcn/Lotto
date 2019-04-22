@@ -12,9 +12,7 @@ namespace WPFGUI
         public int firstPrizeNumber; //抽奖人数
         public int secondPrizeNumber; //抽奖人数
         public int thirdPrizeNumber; //抽奖人数
-        public String[] prize;
-        public String key;
+        //public string[] prize;
+        public string key;
     }
-
-
 }

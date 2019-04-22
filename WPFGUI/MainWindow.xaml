@@ -110,7 +110,7 @@
                     </DataGrid.Columns>-->
 
                     </DataGrid>
-                    <Button x:Name="refresh_button" Content="输出结果" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="22" Opacity="0.8"/>
+                    <Button x:Name="write_button" Content="输出结果" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="22" Opacity="0.8" Click="Write_button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="关于">

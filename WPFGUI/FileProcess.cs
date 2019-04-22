@@ -139,7 +139,7 @@ namespace WPFGUI
         public string theme;
         public List<GroupMember> winnerGroup;
 
-        WinnerGroup(string themeKey, List<GroupMember> winners)
+        public WinnerGroup(string themeKey, List<GroupMember> winners)
         {
             theme = themeKey;
             winnerGroup = winners;
